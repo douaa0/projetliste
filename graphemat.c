@@ -21,7 +21,7 @@ GrapheMat* creerGrapheMat (int nMax, int value){
 	graphe->marque = (booleen*) malloc (sizeof(booleen) *nMax);
 	graphe->element = (int*) malloc (sizeof(int) *nMax*nMax);
 	graphe->valeur = (int*) malloc (sizeof(int) *nMax*nMax);
-	
+
 	int i;
 	int j;
 	for(i=0; i<nMax; i++){
@@ -31,7 +31,7 @@ GrapheMat* creerGrapheMat (int nMax, int value){
 		}
 	}
 	razMarque(graphe);
-	
+
 	return graphe;
 }
 
@@ -68,8 +68,10 @@ void ajouterUnSommet (GrapheMat* graphe, NomSom nom){
 	}
 }
 
-//insertion d'un arc dans un  graphe, somD est de depart, somA d'arrive
-void ajouterUnArc (GrapheMat* graphe, NomSom somD, NomSom somA, int cout){
+//insertion d'un arc dans un  graphe,
+    //somD est de depart, somA d'arrive
+void ajouterUnArc (GrapheMat* graphe,
+                   NomSom somD, NomSom somA, int cout){
 	int nMax = graphe->nMax;
 	int rd = rang(graphe, somD);
 	int rg = rang(graphe, somA);
@@ -83,7 +85,7 @@ void ecrireGraphe (GrapheMat* graphe){
 	int i;
 	int j;
 	for(i=0; i<graphe->n; i++){
-		printf("%s",graphe->nomS[i])
+		printf("%s",graphe->nomS[i]);
 	}
 	printf(";\n");
 	for(i=0; i<graphe->n; i++){
@@ -92,7 +94,7 @@ void ecrireGraphe (GrapheMat* graphe){
 			if(graphe->element[i*nMax+j] == vrai){
 				printf("%s", graphe->nomS[j]);
 				if(graphe->value){
-					printf("%d", graphe->valuer[i*nMax+j]);
+					printf("%d", graphe->valeur[i*nMax+j]);
 				}
 			}
 		}
@@ -107,7 +109,8 @@ static void profondeur(GrapheMat* graphe, int numSommet){
 	printf("%s\n", graphe->nomS[numSommet]);
 	int i;
 	for(i=0; i<graphe->n; i++){
-		if((graphe->element[numSommet*nMax+i] == vrai) && !graphe->marque[i]){
+		if((graphe->element[numSommet*nMax+i] == vrai)
+            && !graphe->marque[i]){
 			profondeur(graphe, i);
 		}
 	}
