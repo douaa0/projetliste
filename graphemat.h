@@ -1,4 +1,7 @@
 /* graphemat.h */
+#ifndef GRAPHEMAT_H
+#define GRAPHEMAT_H
+#endif // GRAPHEMAT_H
 #include <stdio.h>
 typedef int booleen;
 #define faux 0
@@ -18,6 +21,7 @@ booleen* marque; // sommet marqué (visité) ou non
 GrapheMat* creerGrapheMat (int nMax, int value);
 void detruireGraphe (GrapheMat* graphe);
 void ajouterUnSommet (GrapheMat* graphe, NomSom nom);
-void ajouterUnArc (GrapheMat* graphe, NomSom somD, NomSom somA, int cout);
+void ajouterUnArc (GrapheMat* graphe,
+                    NomSom somD, NomSom somA, int cout);
 void ecrireGraphe (GrapheMat* graphe);
 void parcoursProfond (GrapheMat* graphe);
