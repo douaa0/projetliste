@@ -1,0 +1,58 @@
+//function floyd
+void floyd (GrapheMat* graphe){
+	Matrice a,p;
+	int k;
+	int i;
+	int j;
+	int n = graphe->n;
+	int nMax = graphe->nMax;
+	initFloyd(graphe, $a, $p);
+	for(k=0; k<n; k++){
+		for(i=0; i<n; i++){
+			for(j=0; j<n; j++){
+				if((a[i*nMax+k] != INFINI) && (a[k*nMax+j] != INFINI) && (a[i*nMax+k] + a[k*nMax+j]<a[i*nMax+j]) ){
+					a[i*nMax+j] = a[i*nMax+k] + a[k*nMax+j];
+					p[i*nMax+j] = p[k*nMax+j];
+				}
+			}
+		}
+		ecrireEtape(a, p, k, n,nMax);
+	}
+}
+
+//function static
+static void initFloyd(GrapheMat* graphe, Matrice* a, Matrice* p){
+	int nMax = graphe->nMax;
+	Matrice ta = (int*)malloc(sizeof(int)*nMax*nMax);
+	Matrice tp = (int*)malloc(sizeof(int)*nMax*nMax);
+	int i,j;
+	for(i=0; i<graphe->n; i++){
+		for(j=0; j<graphe->n; j++){
+			ta[i*nMax+j] = graphe->valeur[i*nMax+j];
+			tp[i*nMax+j] = i;
+		}
+	}
+	*a = ta;
+	*p = tp;
+}
+
+//function static2
+static void ecrireEtape (Matrice a, Matrice p, int k, int ns, int nMax){
+	printf("Passage par le sommet numero %d\n", k);
+	int i,j;
+	for(i=0; i<ns; i++){
+		for(j=0; j<ns; j++){
+			if(a[i*nMax+j]==INFINI){
+				printf("  %3s", "*");
+			} else {
+				printf("  %3d", a[i*nMax+j]);
+			}
+		}
+		printf("%6s", " ");
+		for(j=0; j<ns; j++){
+			printf("%3d", p[i*nMax+j]);
+		}
+		printf("\n");
+	}
+	printf("\n");
+}
