@@ -13,6 +13,7 @@ printf ("3 - ajouter Un Arc \n");
 printf ("4 - ecrire Graphe \n");
 printf ("5 - parcours Profond \n");
 printf ("6 - Destruction du graph\n");
+printf ("7 - Floyd \n");
 printf ("\n");
 printf ("Votre choix ? ");
 int cod; scanf ("%d", &cod); getchar();
@@ -92,12 +93,19 @@ int main () {
                     printf("Le graphe est déjà vide.\n");
                 }
                 break;
+            case 7:  // Floyd
+                if (monGraphe != NULL) {
+                    floyd(monGraphe);
+                } else {
+                    printf("Veuillez créer un graphe d'abord.\n");
+                }
+            break;
 
             default:
                 printf("Choix invalide. Veuillez réessayer.\n");
         }
 
-    } while (choix != 6);
+    } while (choix != 7);
 
     return 0;
 }
